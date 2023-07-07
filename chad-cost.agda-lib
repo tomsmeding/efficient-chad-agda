@@ -1,0 +1,3 @@
+name: chad-cost
+include: .
+depend: standard-library
