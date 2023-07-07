@@ -1,7 +1,8 @@
 module spec where
 
 open import Agda.Builtin.Bool using (true; false)
-open import Agda.Builtin.Float using (Float; primFloatPlus; primFloatTimes; primFloatNegate; primFloatLess)
+open import Agda.Builtin.Float
+  using (Float; primFloatPlus; primFloatTimes; primFloatNegate; primFloatLess)
 open import Agda.Builtin.Maybe using (nothing; just)
 open import Agda.Builtin.Sigma using (_,_; fst; snd)
 open import Agda.Builtin.Unit using (⊤; tt)
