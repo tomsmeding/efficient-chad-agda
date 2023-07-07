@@ -1,0 +1,34 @@
+cabal-version:      2.2
+name:               arith-solver
+version:            0.1.0.0
+license:            MIT
+author:             Tom Smeding
+maintainer:         t.j.smeding@uu.nl
+category:           Development
+build-type:         Simple
+
+executable arith-solver
+    main-is: Main.hs
+    other-modules:
+      Abstract
+      AgdaIO
+      AgdaIO.Monad
+      AST
+      Parser
+      Tactic
+      Reexpress
+      ToAgda
+      ToSMT
+      Types
+      Unnormalise
+      Util
+    build-depends:
+      base >= 4.16 && < 4.18,
+      containers,
+      json,
+      parsec,
+      process,
+      transformers
+    hs-source-dirs: .
+    default-language: Haskell2010
+    ghc-options: -Wall -rtsopts
