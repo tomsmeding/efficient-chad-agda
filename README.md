@@ -33,9 +33,12 @@ The **specification** is given in `spec/linear-types.agda`, `spec/LACM.agda` and
 The `spec.linear-types` module sets up some definitions about the monoids that we use (our use of "linear" in this repository refers to monoid structures, not resource-linearity as in Rust, Linear Haskell etc.); `spec.LACM` then defines an abstract _local accumulation monad_ with some declared complexity properties (that the implementation in Agda does not satisfy because it lacks mutability, but a proper implementation is easily written in e.g. Haskell); finally, `spec.agda` gives the term language we operate on, its semantics and cost model (`eval`), the CHAD code transformation as we modified it (`chad`), and finally the theorem statements (`TH1-STATEMENT` and `TH2-STATEMENT`).
 Theorem 1 is the theorem that is proved by induction; theorem 2 is its corollary that does away with the potential function, which users are likely not interested in.
 
+The specification part of the Agda code is properly commented and also appears in the appendix of the paper [[2]][arxiv2].
+
 The **proof** first gives some definitions and lemmas in `setup.agda`, and then proves two larger lemmas in `eval-sink-commute.agda` (which proves that `eval` and `sink` commute given appropriate permutations of the relevant valuation environments) and `chad-preserves-primal.agda` (which proves that the first half of a CHAD-transformed program actually does still compute the same thing as the original program -- this is used in the complexity proof for scoping constructs such as `let`).
 Then, the final inductive proof, as well as that of the corollary, can be found in `chad-cost.agda`.
 The proof uses a number of arithmetic lemmas of which the generated proofs (generated using `arith-solver` in this repo) can be found in `lemmas.agda`.
+Documentation about the proof part of the proof is still somewhat lacking.
 
 
 ## Arithmetic lemmas
