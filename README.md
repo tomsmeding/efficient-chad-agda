@@ -52,4 +52,4 @@ It is just clumsy automation to _write_ parts of the proof.
 
 
 [chad1]: https://dl.acm.org/doi/10.1145/3527634
-[arxiv2]: TODO
+[arxiv2]: https://arxiv.org/abs/2307.05738
