@@ -139,12 +139,12 @@ eval-sink-commute env env2 w p (lpair e1 e2)
 eval-sink-commute env env2 w p (lfst' e)
   rewrite eval-sink-commute env env2 w p e
   with fst (eval env2 (sink w e))
-... | nothing = refl
+... | nothing      rewrite eval-sink-commute env env2 w p e = refl
 ... | just (x , y) rewrite eval-sink-commute env env2 w p e = refl
 eval-sink-commute env env2 w p (lsnd' e)
   rewrite eval-sink-commute env env2 w p e
   with fst (eval env2 (sink w e))
-... | nothing = refl
+... | nothing      rewrite eval-sink-commute env env2 w p e = refl
 ... | just (x , y) rewrite eval-sink-commute env env2 w p e = refl
 eval-sink-commute env env2 w p lpairzero = refl
 eval-sink-commute env env2 w p (linl e)

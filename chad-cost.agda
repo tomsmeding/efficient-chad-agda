@@ -121,9 +121,9 @@ th1 {Γ} {σ :* τ} env ctg@(just ctg') denvin (pair e1 e2) =
       prunbind1 , prunbind2 = runbindres
       pφdenvout : φeout ≡ φe3
       pφdenvout = cong (φ' (map D2τ' Γ)) prunbind1
-      k1 : crun1 + ccall1 + cmonad1 - φd1 - φe1 + φe2 - + length Γ ≤ + 31 * cost env e1
+      k1 : crun1 + ccall1 + cmonad1 - φd1 - φe1 + φe2 - + length Γ ≤ + 34 * cost env e1
       k1 = th1 env ctg1 denvin e1
-      k2 : crun2 + ccall2 + cmonad2 - φd2 - φe2 + φe3 - + length Γ ≤ + 31 * cost env e2
+      k2 : crun2 + ccall2 + cmonad2 - φd2 - φe2 + φe3 - + length Γ ≤ + 34 * cost env e2
       k2 = th1 env ctg2 denv2 e2
       envlen = + length Γ
   in {- LEMMA -} lemma-pair-just crun1 crun2 ccall1 ccall2 cmonad cmonad1 cmonad2 φd1 φd2 φe1 φe2 φe3 φeout evc1 evc2 pφdenvout envlen prunbind2 k1 k2
@@ -474,13 +474,13 @@ th1 {Γ} env ctg denvin (case' {σ = σ} {τ = τ} {ρ = ρ} e1 e2 e3)
       pφzero : φzero ≡ + 1
       pφzero = zero-small-φ subenv2 σ
 
-      k1 : crun1 + ccall1 + cmonad1-B + - (+ 1 + φdx) + - φdenv2-B + φdenvout-B + - envlen ≤ + 31 * evc1
-      k1 = subst (\hole -> crun1 + ccall1 + cmonad1-B + - (+ 1 + φdx) + - φdenv2-B + φdenvout-B + - envlen ≤ + 31 * snd hole) eq (th1 env (just (inj₁ dx)) denv2-B e1)
+      k1 : crun1 + ccall1 + cmonad1-B + - (+ 1 + φdx) + - φdenv2-B + φdenvout-B + - envlen ≤ + 34 * evc1
+      k1 = subst (\hole -> crun1 + ccall1 + cmonad1-B + - (+ 1 + φdx) + - φdenv2-B + φdenvout-B + - envlen ≤ + 34 * snd hole) eq (th1 env (just (inj₁ dx)) denv2-B e1)
       k2 = th1 (push x env) ctg (zerores , denvin) e2
       answer : 
         + 1 + crun1 + (+ 3 + (one + crun2 + + 6)) + (one + (one + czero + (+ 4 + ccall2)) + + 2)
           + cmonad-A - φd - φenvin + φdenv2-A - envlen
-          ≤ + 31 * (one + evc1 + evc2)
+          ≤ + 34 * (one + evc1 + evc2)
       answer =
         {- LEMMA -} lemma-case-1 evc1 crun1 crun2 czero ccall2 cmonad2-B ccall1 cmonad1-B cmonad-A evc2 envlen φd φdx φenvin φdenv2-A φdenv2-B φdenvout-B φzero crun2-X ccall2-X cmonad2-X φdx-X φdenv2-X eq-crun2 eq-ccall2 eq-cmonad2 eq-φdx eq-φdenv2 runbindres2 eq-φdenv2out pczero pφzero k1 k2
   in answer
@@ -556,13 +556,13 @@ th1 {Γ} env ctg denvin (case' {σ = σ} {τ = τ} {ρ = ρ} e1 e2 e3)
       pφzero : φzero ≡ + 1
       pφzero = zero-small-φ subenv2 τ
 
-      k1 : crun1 + ccall1 + cmonad1-B + - (+ 1 + φdy) + - φdenv3-B + φdenvout-B + - envlen ≤ + 31 * evc1
-      k1 = subst (\hole -> crun1 + ccall1 + cmonad1-B + - (+ 1 + φdy) + - φdenv3-B + φdenvout-B + - envlen ≤ + 31 * snd hole) eq (th1 env (just (inj₂ dy)) denv3-B e1)
+      k1 : crun1 + ccall1 + cmonad1-B + - (+ 1 + φdy) + - φdenv3-B + φdenvout-B + - envlen ≤ + 34 * evc1
+      k1 = subst (\hole -> crun1 + ccall1 + cmonad1-B + - (+ 1 + φdy) + - φdenv3-B + φdenvout-B + - envlen ≤ + 34 * snd hole) eq (th1 env (just (inj₂ dy)) denv3-B e1)
       k2 = th1 (push y env) ctg (zerores , denvin) e3
       answer : 
         + 1 + crun1 + (+ 3 + (one + crun3 + + 6)) + (one + (one + czero + (+ 4 + ccall3)) + + 2)
           + cmonad-A - φd - φenvin + φdenv3-A - envlen
-          ≤ + 31 * (one + evc1 + evc3)
+          ≤ + 34 * (one + evc1 + evc3)
       answer =
         {- LEMMA -} lemma-case-1 evc1 crun1 crun3 czero ccall3 cmonad3-B ccall1 cmonad1-B cmonad-A evc3 envlen φd φdy φenvin φdenv3-A φdenv3-B φdenvout-B φzero crun3-X ccall3-X cmonad3-X φdy-X φdenv3-X eq-crun3 eq-ccall3 eq-cmonad3 eq-φdy eq-φdenv3 runbindres2 eq-φdenv3out pczero pφzero k1 k2
   in answer
@@ -662,10 +662,10 @@ th2 {Γ} {τ} env ctg t =
       primal-cost = cost env t
       codom-size = + size (D2τ' τ) ctg
 
-      k1 : crun2 + ccall2 + cmonad2 - φd - φdenvin + φdenvout2 - envlen ≤ + 31 * primal-cost
+      k1 : crun2 + ccall2 + cmonad2 - φd - φdenvin + φdenvout2 - envlen ≤ + 34 * primal-cost
       k1 = th1 env ctg denvin t
 
       answer : + 1 + (+ 1 + (+ 1 + crun1) + + 1 + ccall1) + czeroenv + cmonad1
-               ≤ + 5 + + 31 * primal-cost + codom-size + + 4 * envlen
+               ≤ + 5 + + 34 * primal-cost + codom-size + + 4 * envlen
       answer = {- LEMMA -} lemma-th2 φd envlen czeroenv φdenvin crun1 ccall1 cmonad1 crun2 ccall2 cmonad2 φdenvout2 eq-crun eq-ccall eq-cmonad bound-φenv bound-czeroenv sym-φdenvout2 sym-result primal-cost codom-size bound-φd k1
   in answer

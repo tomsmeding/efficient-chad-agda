@@ -563,12 +563,14 @@ eval env (lpair e1 e2) =
 eval env (lfst' {σ = σ} e) =
   let e' , ce = eval env e
   in case e' of
-       λ where nothing -> zerov σ
+       λ where nothing -> let z , cz = zerov σ
+                          in z , one + ce + cz
                (just (x , y)) -> x , one + ce
 eval env (lsnd' {τ = τ} e) =
   let e' , ce = eval env e
   in case e' of
-       λ where nothing -> zerov τ
+       λ where nothing -> let z , cz = zerov τ
+                          in z , one + ce + cz
                (just (x , y)) -> y , one + ce
 eval env lpairzero = nothing , one
 eval env (linl e) =
@@ -726,7 +728,7 @@ TH1-STATEMENT =
       - φ' (map D2τ' Γ) denvin
       + φ' (map D2τ' Γ) denvout
       - + length Γ
-      ≤ + 31 * cost env t
+      ≤ + 34 * cost env t
 
 -- In th2 we bound φ by the size of the incoming cotangent. This measures the
 -- size of a cotangent value.
@@ -760,6 +762,6 @@ TH2-STATEMENT =
                        (var Z))
                   (zero-env-term Γ))
       ≤ + 5
-         + + 31 * cost env t
+         + + 34 * cost env t
          + + size (D2τ' τ) ctg
          + + 4 * + length Γ
